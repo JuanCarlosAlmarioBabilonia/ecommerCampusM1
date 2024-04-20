@@ -3,8 +3,19 @@
     --color-2: #1B2028;
     --color-3: #A4AAAD;
     --color-4: #111111;
+<<<<<<< HEAD
     --space-layout-padding-lr: 0px 15px;
     --space-layout-padding-t: 5px; 
+=======
+    --color-5: #FFFFFF;
+    --color-6:#343031;
+    --space-layout-padding-lr: 0px 15px;
+    --space-layout-padding-t: 5px; 
+    --layout-imagen-width:100%;
+    --layout-imagen-height:350px;
+    --layout-imagen-width-detail:100%;
+    --layout-imagen-height-detail:465px;
+>>>>>>> a7b1e78 (style.css)
 
 }
 @font-face {
