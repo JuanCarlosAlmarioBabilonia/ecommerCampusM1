@@ -124,3 +124,45 @@ hr {
     font-family: "EncodeSans-SemiBold";
     color: white
 }
+
+.ship_info{
+    display: flex;
+    justify-content: space-between;
+    background: var(--color-6);
+    border-radius: 10px;
+    padding: 20px;
+    margin:25px;
+    margin-top: 2vh;
+}
+
+.ship_info p{
+    margin-left: -21vw;
+    margin-top: 0.9vh;
+    font-family: "EncodeSans-SemiBold";
+}
+
+.visa{
+    width:15vw;
+    height:4vh
+}
+
+h4{
+    font-family: "EncodeSans-Bold";
+    margin-left: 3vh;
+    margin-top: 3.5vh;
+}
+
+.pago{
+    display:flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    margin:25px;
+}
+
+.pago span{
+    font-family: "EncodeSans-Medium";
+}
+
+.pago p{
+    font-family: "EncodeSans-Bold";
+}
