@@ -166,3 +166,28 @@ h4{
 .pago p{
     font-family: "EncodeSans-Bold";
 }
+
+.footer{
+    /* background: red; */
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    padding: var(--space-layout-padding-lr);
+}
+.footer__ul{
+    background: var(--color-7);
+    height: 55px;
+    display: flex;
+    align-items: center;
+    border-radius: 40px;
+}
+
+.footer__ul span{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* background: red; */
+    text-decoration: none;
+    color: var(--color-5);
+    font-family: "EncodeSans-Bold";
+}
