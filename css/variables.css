@@ -4,13 +4,14 @@
     --color-3: #A4AAAD;
     --color-4: #111111;
     --color-5: #FFFFFF;
-    --color-6:#343031;
     --space-layout-padding-lr: 0px 15px;
     --space-layout-padding-t: 5px; 
     --layout-imagen-width:100%;
     --layout-imagen-height:350px;
     --layout-imagen-width-detail:100%;
     --layout-imagen-height-detail:465px;
+    --layout-imagen-width-checkout:20vw;
+    --layout-imagen-height-checkout:10vh;
 
 }
 @font-face {
