@@ -106,8 +106,9 @@
     background: var(--color-5);
 }
 
-.nav__ul li a:hover{
+.nav__ul li a:hover {
     filter: invert(1);
+    transition: all 0.5s ease 0.1s
 }
 
 .footer{
@@ -160,12 +161,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* background: green; */
     width: 48%;
     /* height: 380px; */
     margin-bottom: 4%;
+    cursor:pointer
 }
+
+.main__article section:hover{
+    transition: all 0.5s ease 0.1s;
+    background-color: rgb(189, 189, 189);
+}
+
 .section__front_page{
     position: relative;
     margin-top: 2px;
