@@ -1,5 +1,6 @@
 import { getAllCategory, getAllProductNames } from "./module/app.js";
 import { galleryIndex } from "./components/gallery.js";
+import { menuListCategoryIndex } from "./components/menu.js";
 // let header__information = document.querySelector('.header__information');
 // console.log(header__information);
 
@@ -15,6 +16,7 @@ addEventListener("DOMContentLoaded", async e => {
 input__search.addEventListener("change", async e => {
     let data = {search: e.target.value}
     input__search.value = null;
+    
     let res = await getAllProductNames(data);
     main__article.innerHTML = galleryIndex(res);
 });

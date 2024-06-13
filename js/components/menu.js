@@ -1,7 +1,8 @@
-export const menuListCategoryIndex = () => {
+export const menuListCategoryIndex = (res)=>{
     let {data} = res;
+    let dataArray = Array.from(data);
     let plantilla = "";
-    data.forEach((value, index)=> {
+    dataArray.forEach((value, index) => {
         plantilla += /*html*/`
         <li title="${value.name}">
             <a href="#" >
@@ -9,6 +10,7 @@ export const menuListCategoryIndex = () => {
                 <span>${value.name}</span>
             </a>
         </li>
-    `;
-    })
+        `;
+    });
+    return plantilla;
 }
