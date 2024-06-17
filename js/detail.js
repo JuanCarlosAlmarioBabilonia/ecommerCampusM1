@@ -2,10 +2,12 @@ import { galleryCategory } from "./components/gallery.js";
 import { titleProductDetail } from "./components/section.js";
 import { getProductId } from "./module/detail.js";
 import { productPriceFooter } from "./components/section.js";
+import { productDescription } from "./components/section.js";
 
 let main__section__gallery = document.querySelector("#main__section__gallery");
 let main__section__title = document.querySelector("#main__section__title")
 let product__price = document.querySelector("#product__price")
+let product_description = document.querySelector("#product_description")
 
 addEventListener("DOMContentLoaded", async(e)=>{
     let params = new URLSearchParams(location.search);
@@ -14,6 +16,7 @@ addEventListener("DOMContentLoaded", async(e)=>{
     main__section__gallery.innerHTML = await galleryCategory(JSON.parse(localStorage.getItem(id)))
     main__section__title.innerHTML = await titleProductDetail(JSON.parse(localStorage.getItem(id)))
     product__price.innerHTML = await productPriceFooter(JSON.parse(localStorage.getItem(id)))
+    product_description.innerHTML = await productDescription(JSON.parse(localStorage.getItem(id)))
     // let {data} = res;
     // let {
     //     category_path,

@@ -30,3 +30,11 @@ export const productPriceFooter = async ({data: dataUpdate} = res) => {
     </ul>
     `;
 }
+
+export const productDescription = async ({data: dataUpdate} = res) => {
+    return /*html*/`
+    <article class="product__information">
+    <p>${dataUpdate.product_description}</p>
+    </article>
+    `;
+}
