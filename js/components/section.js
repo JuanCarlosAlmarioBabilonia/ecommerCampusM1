@@ -20,14 +20,14 @@ export const titleProductDetail = async ({data: dataUpdate} = res) => {
 
 export const productPriceFooter = async ({data: dataUpdate} = res) => {
     return /*html*/`
-    <ul class="footer__ul">
+    <button class="footer__ul">
         <li>
-            <a href="../views/checkout.html">
+            <a href="#">
                 <img src="../storage/img/shopping-cart.svg">
                 <span>Add to Cart | ${dataUpdate.product_price}</span>
             </a>
         </li>
-    </ul>
+    </button>
     `;
 }
 

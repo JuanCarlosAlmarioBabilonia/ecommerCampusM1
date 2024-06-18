@@ -31,8 +31,7 @@ addEventListener("DOMContentLoaded", async(e)=>{
     increase_button.addEventListener("click", async e => {
         let cantidad = parseInt(number.textContent);
             number.textContent = cantidad + 1
-    });
-
+    }); 
 
 
 
