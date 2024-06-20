@@ -2,6 +2,9 @@ import { galleryCategory } from "./components/gallery.js";
 import { titleProductDetail, productPriceFooter, productDescription } from "./components/section.js";
 import { getProductId } from "./module/detail.js";
 
+
+let datos = {};
+
 let main__section__gallery = document.querySelector("#main__section__gallery");
 let main__section__title = document.querySelector("#main__section__title");
 let product__price = document.querySelector("#product__price");
@@ -12,17 +15,24 @@ addEventListener("DOMContentLoaded", async(e)=>{
     let params = new URLSearchParams(location.search);
     let id = params.get('id');
     if(!localStorage.getItem(id)) localStorage.setItem(id, JSON.stringify(await getProductId({id})));
-    main__section__gallery.innerHTML = await galleryCategory(JSON.parse(localStorage.getItem(id)))
-    main__section__title.innerHTML = await titleProductDetail(JSON.parse(localStorage.getItem(id)))
+    let info = JSON.parse(localStorage.getItem(id))
+    main__section__gallery.innerHTML = await galleryCategory(info);
+    main__section__title.innerHTML = await titleProductDetail(info);
+
+    datos.productos = info;
+    
+
     let increase_button = document.querySelector("#increaseButton");
     let decrease_button = document.querySelector("#decreaseButton");
-    product__price.innerHTML = await productPriceFooter(JSON.parse(localStorage.getItem(id)))
-    product_description.innerHTML = await productDescription(JSON.parse(localStorage.getItem(id)))
+    product__price.innerHTML = await productPriceFooter(info)
+    product_description.innerHTML = await productDescription(info)
     
 
     decrease_button.addEventListener("click",quantity)
     increase_button.addEventListener("click",quantity)
 })
+
+
 
     const quantity = async (e)=>{
         let number = document.querySelector("#number");
@@ -49,16 +59,12 @@ addEventListener("DOMContentLoaded", async(e)=>{
     // });
 }
 
-    // let {data} = res;
-    // let {
-    //     category_path,
-    //     about_product,
-    //     product_details,
-    //     product_information,
-    //     product_photos,
-    //     product_variations,
-    //     rating_distribution,
-    //     review_aspects,
-    //     ...dataUpdate
-    // } = data;
-    // console.log(dataUpdate);
+
+product__price.addEventListener("click", async(e)=>{
+    let params = new URLSearchParams(location.search);
+    let id = params.get('id');
+    if(!sessionStorage.getItem(id)) sessionStorage.setItem(id, JSON.stringify(datos.productos));
+    console.log(sessionStorage);
+    
+})
+
