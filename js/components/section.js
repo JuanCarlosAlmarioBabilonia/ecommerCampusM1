@@ -59,7 +59,7 @@ export const productDescription = async ({data: dataUpdate} = res) => {
     `;
 }
 
-export const AddProduct = async(res )=>{
+export const AddProduct = async (res)=>{
     let {data} = res;
     let {
         category_path,
@@ -73,33 +73,34 @@ export const AddProduct = async(res )=>{
         ...dataUpdate
     } = data;
     
-    console.log(data);
+
 
     return /*html*/`
     <section class="oli">
-            <div class="elem_compr">
-                <img src="${dataUpdate.product_photo}">
-            </div>  
-            <div class="texto">
-                <h5>${dataUpdate.product_name}</h5> 
-                <small>${dataUpdate.product_title}</small>
-                <h4>${dataUpdate.product_price}</h4>
-            </div>
-        </section>
-        <section class="olip2">
-            <div class="oli2">
-                <div class="circles">
-                    <img src="../storage/img/circles.svg">
-                </div>
-            </div>
-        <div class="oli3">
-            <div class="cuadro">
-                <img src="../storage/img/minuswhite.svg">
-                <span>4</span>
-                <img src="../storage/img/pluswhite.svg">
-            </div>
+    <div class="elem_compr">
+        <img src="${dataUpdate.product_photo}">
+    </div>  
+    <div class="texto">
+        <h5>${dataUpdate.product_title}</h5> 
+        <small>⭐${dataUpdate.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
+        <h4>${dataUpdate.product_price}</h4>
+    </div>
+</section>
+<section class="olip2">
+    <div class="oli2">
+        <div class="circles">
+            <img src="../storage/img/circles.svg">
         </div>
-        </section>
-    </section>
+    </div>
+    <div class="oli3">
+        <div class="cuadro">
+            <img src="../storage/img/minuswhite.svg">
+            <span id="number" >${dataUpdate.quantity}</span>
+            <img src="../storage/img/pluswhite.svg">
+        </div>
+    </div>
+</section>
         `;}
+
+        
 

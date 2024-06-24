@@ -7,7 +7,7 @@ let datos = {};
 
 let main__section__gallery = document.querySelector("#main__section__gallery");
 let main__section__title = document.querySelector("#main__section__title");
-let product__price = document.querySelector("#product__price");
+let footer__ul = document.querySelector(".footer__ul");
 let product_description = document.querySelector("#product_description");
 
 
@@ -60,11 +60,22 @@ addEventListener("DOMContentLoaded", async(e)=>{
 }
 
 
-product__price.addEventListener("click", async(e)=>{
+footer__ul.addEventListener("click", async(e)=>{
     let params = new URLSearchParams(location.search);
     let id = params.get('id');
-    if(!sessionStorage.getItem(id)) sessionStorage.setItem(id, JSON.stringify(datos.productos));
-    console.log(sessionStorage);
+    let productInfo = datos.productos;
+
+    let number = document.querySelector("#number");
+    let quantity = Number(number.innerHTML);
+
+    productInfo.productos.data.quantity = quantity;
+
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    
+    cart.push(productInfo);
+    
+    // Guarda el carrito actualizado en sessionStorage
+    sessionStorage.setItem('cart', JSON.stringify(cart));
     
 })
 
