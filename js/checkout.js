@@ -8,10 +8,6 @@ addEventListener("DOMContentLoaded", async (e) => {
     productAdded.innerHTML = productHtml.join('');
 });
 
-// main.js
-
-// main.js
-
 document.addEventListener("DOMContentLoaded", () => {
     const counter = document.querySelector("#counter");
 
