@@ -59,7 +59,8 @@ export const productDescription = async ({data: dataUpdate} = res) => {
     `;
 }
 
-export const AddProduct = async (res)=>{
+
+export const AddProduct = async (res) => {
     let {data} = res;
     let {
         category_path,
@@ -72,35 +73,35 @@ export const AddProduct = async (res)=>{
         review_aspects,
         ...dataUpdate
     } = data;
-    
 
+    let quantity = res.quantity || 1;
 
     return /*html*/`
-    <section class="oli">
-    <div class="elem_compr">
-        <img src="${dataUpdate.product_photo}">
-    </div>  
-    <div class="texto">
-        <h5>${dataUpdate.product_title}</h5> 
-        <small>⭐${dataUpdate.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
-        <h4>${dataUpdate.product_price}</h4>
-    </div>
-</section>
-<section class="olip2">
-    <div class="oli2">
-        <div class="circles">
-            <img src="../storage/img/circles.svg">
-        </div>
-    </div>
-    <div class="oli3">
-        <div class="cuadro">
-            <img src="../storage/img/minuswhite.svg">
-            <span id="number" >${dataUpdate.quantity}</span>
-            <img src="../storage/img/pluswhite.svg">
-        </div>
-    </div>
-</section>
-        `;}
-
+        <section class="oli">
+            <div class="elem_compr">
+                <img src="${dataUpdate.product_photo}">
+            </div>  
+            <div class="texto">
+                <h5>${dataUpdate.product_title}</h5> 
+                <small>⭐${dataUpdate.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
+                <h4>${dataUpdate.product_price}</h4>
+            </div>
+        </section>
+        <section class="olip2">
+            <div class="oli2">
+                <div class="circles">
+                    <img src="../storage/img/circles.svg">
+                </div>
+            </div>
+            <div class="oli3">
+                <div class="cuadro">
+                    <img src="../storage/img/minuswhite.svg">
+                    <span id="number">${quantity}</span>
+                    <img src="../storage/img/pluswhite.svg">
+                </div>
+            </div>
+        </section>
+    `;
+}
         
 

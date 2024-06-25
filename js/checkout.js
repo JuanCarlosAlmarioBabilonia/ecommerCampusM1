@@ -1,16 +1,46 @@
 import { AddProduct } from "./components/section.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-    let productAdded = document.querySelector("#productAdded");
+let productAdded = document.querySelector("#productAdded");
 
-    if (cart.length > 0) {
-        let productHtml = cart.map(product => AddProduct(product));
-        productAdded.innerHTML = productHtml.join('');
-    } else {
-        productAdded.innerHTML = "No hay productos en el carrito.";
+addEventListener("DOMContentLoaded", async (e) => {
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    let productHtml = await Promise.all(cart.map(product => AddProduct(product)));
+    productAdded.innerHTML = productHtml.join('');
+});
+
+// main.js
+
+// main.js
+
+document.addEventListener("DOMContentLoaded", () => {
+    const counter = document.querySelector("#counter");
+
+    // Función para obtener los datos del carrito desde sessionStorage
+    function getCartFromSessionStorage() {
+        return JSON.parse(sessionStorage.getItem('cart')) || [];
     }
 
-    console.log(cart)
+    // Función para actualizar el contador de productos
+    function updateProductCount() {
+        const cart = getCartFromSessionStorage();
+        let totalCount = 0;
+
+        // Sumar la cantidad de cada producto en el carrito
+        cart.forEach(product => {
+            totalCount += product.quantity;
+        });
+
+        // Actualizar el contador en el DOM
+        counter.textContent = totalCount.toString();
+    }
+
+    // Llamar a la función para actualizar el contador al cargar la página
+    updateProductCount();
 });
+
+
+
+
+
+
 

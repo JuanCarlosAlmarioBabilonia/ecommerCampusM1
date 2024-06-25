@@ -24,14 +24,37 @@ addEventListener("DOMContentLoaded", async(e)=>{
 
     let increase_button = document.querySelector("#increaseButton");
     let decrease_button = document.querySelector("#decreaseButton");
-    product__price.innerHTML = await productPriceFooter(info)
+    footer__ul.innerHTML = await productPriceFooter(info)
     product_description.innerHTML = await productDescription(info)
     
 
     decrease_button.addEventListener("click",quantity)
     increase_button.addEventListener("click",quantity)
-})
 
+    footer__ul.addEventListener("click", async (e) => {
+        let id = params.get('id');
+        let productInfo = datos.productos;
+        let span_quantity = document.querySelector("#number");
+        let quantity = Number(span_quantity.innerHTML);
+
+        // Añade la cantidad seleccionada al objeto productInfo
+        productInfo.quantity = quantity;
+
+        // Obtiene los productos actuales del carrito
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+        // Añade o actualiza el producto en el carrito
+        const existingProductIndex = cart.findIndex(product => product.id === productInfo.id);
+        if (existingProductIndex !== -1) {
+            cart[existingProductIndex] = productInfo; // Actualiza el producto existente
+        } else {
+            cart.push(productInfo); // Añade el nuevo producto
+        }
+
+        // Guarda el carrito actualizado en sessionStorage
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+})
+});
 
 
     const quantity = async (e)=>{
@@ -60,22 +83,4 @@ addEventListener("DOMContentLoaded", async(e)=>{
 }
 
 
-footer__ul.addEventListener("click", async(e)=>{
-    let params = new URLSearchParams(location.search);
-    let id = params.get('id');
-    let productInfo = datos.productos;
-
-    let number = document.querySelector("#number");
-    let quantity = Number(number.innerHTML);
-
-    productInfo.productos.data.quantity = quantity;
-
-    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-    
-    cart.push(productInfo);
-    
-    // Guarda el carrito actualizado en sessionStorage
-    sessionStorage.setItem('cart', JSON.stringify(cart));
-    
-})
 

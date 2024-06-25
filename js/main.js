@@ -61,3 +61,31 @@ input__search.addEventListener("change", searchProducts);
 // para los callbacks no se usa return
 // value: para que aparezca lo escrito en el buscador en la consola
 // instalar es6-string-html
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const loader = document.getElementById('loader');
+
+    // Mostrar loader
+    function showLoader() {
+        loader.style.display = 'block';
+    }
+
+    // Ocultar loader
+    function hideLoader() {
+        loader.style.display = 'none';
+    }
+
+    // Simulación de una solicitud AJAX
+    function fetchData() {
+        showLoader(); // Mostrar loader al comenzar la solicitud
+
+        setTimeout(function() {
+            // Simulando una demora de 2 segundos
+            hideLoader(); // Ocultar loader al completar la solicitud
+        }, 8000);
+    }
+
+    // Llamar a fetchData cuando se carga la página (para propósitos de demostración)
+    fetchData();
+});
