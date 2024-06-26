@@ -59,32 +59,28 @@ export const productDescription = async ({data: dataUpdate} = res) => {
     `;
 }
 
-
 export const AddProduct = async (res) => {
-    let {data} = res;
-    let {
-        category_path,
-        about_product,
-        product_details,
-        product_information,
-        product_photos,
-        product_variations,
-        rating_distribution,
-        review_aspects,
-        ...dataUpdate
-    } = data;
-
-    let quantity = res.quantity || 1;
-
-    return /*html*/`
+    let plantilla =""
+    res.forEach((element) => {
+        if (element !== null && typeof element === 'string') {
+            const data = JSON.parse(element);
+            console.log(data.status);
+            
+            let info = data.data;
+            console.log(info);
+            if (data.status === 'OK' && data.request_id && info) {
+                console.log(info);
+                
+                plantilla += /*html*/`
+            <article class="product_detail">
         <section class="oli">
             <div class="elem_compr">
-                <img src="${dataUpdate.product_photo}">
+                <img src="${info.product_photo}">
             </div>  
             <div class="texto">
-                <h5>${dataUpdate.product_title}</h5> 
-                <small>⭐${dataUpdate.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
-                <h4>${dataUpdate.product_price}</h4>
+                <h5>${info.product_title}</h5> 
+                <small>⭐${info.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
+                <h4>${info.product_price}</h4>
             </div>
         </section>
         <section class="olip2">
@@ -95,13 +91,18 @@ export const AddProduct = async (res) => {
             </div>
             <div class="oli3">
                 <div class="cuadro">
-                    <img src="../storage/img/minuswhite.svg">
-                    <span id="number">${quantity}</span>
-                    <img src="../storage/img/pluswhite.svg">
+                    <img id ="decreaseButton2" src="../storage/img/minuswhite.svg">
+                    <span id="number2">${info.quantity}</span>
+                    <img id="increaseButton2" src="../storage/img/pluswhite.svg">
                 </div>
             </div>
         </section>
-    `;
+        </article>`;}
+        }
+    });
+    return plantilla;
 }
+
         
+
 

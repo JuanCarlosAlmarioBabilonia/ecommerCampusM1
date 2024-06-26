@@ -38,21 +38,23 @@ addEventListener("DOMContentLoaded", async(e)=>{
         let quantity = Number(span_quantity.innerHTML);
 
         // Añade la cantidad seleccionada al objeto productInfo
-        productInfo.quantity = quantity;
+        productInfo.productos.data.quantity = quantity;
 
         // Obtiene los productos actuales del carrito
         let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
 
         // Añade o actualiza el producto en el carrito
-        const existingProductIndex = cart.findIndex(product => product.id === productInfo.id);
+        let existingProductIndex = cart.findIndex(product => product.data.id === productInfo.data.id);
         if (existingProductIndex !== -1) {
-            cart[existingProductIndex] = productInfo; // Actualiza el producto existente
+            cart[existingProductIndex].quantity += quantity; // Actualiza el producto existente
         } else {
-            cart.push(productInfo); // Añade el nuevo producto
+            cart.push(...productInfo, quantity); // Añade el nuevo producto
         }
 
         // Guarda el carrito actualizado en sessionStorage
-        sessionStorage.setItem('cart', JSON.stringify(cart));
+        sessionStorage.setItem(id, JSON.stringify(datos.productos));
+
+        await updateCartDisplay();
 })
 });
 
@@ -65,7 +67,6 @@ addEventListener("DOMContentLoaded", async(e)=>{
         let id = params.get('id');
         let res = JSON.parse(localStorage.getItem(id)).data;
 
-        let product_original_price = undefined;
         if(res.product_original_price) product_original_price = Number(res.product_original_price.replace("$", ""));
         let product_price= Number(res.product_price.replace("$", ""));
 
@@ -74,13 +75,20 @@ addEventListener("DOMContentLoaded", async(e)=>{
 
     price_discount.innerHTML = `$${(product_price * Number(number.innerHTML)).toFixed(2)}`;
     if(product_original_price) price_original.innerHTML = `$${(product_original_price * Number(number.innerHTML)).toFixed(2)}`;
-    // Swal.fire({
-    //     position: "top-end",
-    //     title: `<small>Product ${id} with a quantity of ${span_quantity.innerHTML} was added to the cart</small>`,
-    //     showConfirmButton: false,
-    //     timer: 2000
-    // });
 }
+    document.addEventListener('click', function(e) {
+        if (e.target.id === 'increaseButton2' || e.target.id === 'decreaseButton2') {
+            updateCheckoutQuantity(e);
+        }
+    });
+
+    const updateCheckoutQuantity = (e) => {
+        let span_quantity_checkout = document.querySelector("#number2");
+        if (e.target.id === 'increaseButton') span_quantity.innerHTML = Number(span_quantity.innerHTML) + 1;
+        if (e.target.id === 'decreaseButton' && Number(span_quantity.innerHTML) > 1) span_quantity.innerHTML = Number(span_quantity.innerHTML) - 1;
+    };
+
+
 
 
 

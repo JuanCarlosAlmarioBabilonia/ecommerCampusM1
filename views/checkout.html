@@ -24,30 +24,32 @@
         </header>
         <main class="main">
         <section id="productAdded" class="olip">
-            <!-- <section class="oli">
-                <div class="elem_compr">
-                    <img src="../storage/img/img3.png">
-                </div>  
-                <div class="texto">
-                <h5>Modern light clothes</h5> 
-                <small>Dress modern</small>
-                <h4>$212.99</h4>
-                </div>
-            </section>
-            <section class="olip2">
-                <div class="oli2">
-                    <div class="circles">
-                        <img src="../storage/img/circles.svg">
+            <!-- <article class="product_detail">
+                <section class="oli">
+                    <div class="elem_compr">
+                        <img src="${info.product_photo}">
+                    </div>  
+                    <div class="texto">
+                        <h5>${info.product_title}</h5> 
+                        <small>⭐${info.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
+                        <h4>${info.product_price}</h4>
                     </div>
-                    </div>
-                <div class="oli3">
-                    <div class="cuadro">
-                        <img src="../storage/img/minuswhite.svg">
-                        <span>4</span>
-                        <img src="../storage/img/pluswhite.svg">
+                </section>
+                <section class="olip2">
+                    <div class="oli2">
+                        <div class="circles">
+                            <img src="../storage/img/circles.svg">
                         </div>
                     </div>
-        </section> -->
+                    <div class="oli3">
+                        <div class="cuadro">
+                            <img id ="decreaseButton2" src="../storage/img/minuswhite.svg">
+                            <span id="number2">${info.quantity}</span>
+                            <img id="increaseButton2" src="../storage/img/pluswhite.svg">
+                        </div>
+                    </div>
+                </section>
+                </article> -->
     </section>
 <section class="section__Shopping">
     <!-- <article class="Shopping__title">
@@ -82,8 +84,8 @@
     </article> -->
     <article class="section__bill">
         <div class="bill__total">
-            <label>Total (9 items)</label>
-            <span>$131.97</span>
+            <label>Total (<span id="items">0</span> items)</label>
+            <span id="totalPrice">$131.97</span>
         </div>
         <div class="bill__fee">
             <label>Shipping Fee</label>
@@ -91,7 +93,7 @@
         </div>
         <div class="bill__subtotal">
             <label>Sub Total</label>
-            <span>$131.97</span>
+            <span id="subtotal">$131.97</span>
         </div>
     </article>
 </section>
