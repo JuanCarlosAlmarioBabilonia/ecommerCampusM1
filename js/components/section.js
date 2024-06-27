@@ -61,10 +61,11 @@ export const productDescription = async ({data: dataUpdate} = res) => {
 
 export const AddProduct = async (res) => {
     let plantilla =""
-    res.forEach((element) => {
+    res.forEach(element => {
         if (element !== null && typeof element === 'string') {
+            console.log(element);
             const data = JSON.parse(element);
-            console.log(data.status);
+            console.log(data);
             
             let info = data.data;
             console.log(info);
@@ -79,7 +80,7 @@ export const AddProduct = async (res) => {
             </div>  
             <div class="texto">
                 <h5>${info.product_title}</h5> 
-                <small>⭐${info.product_star_rating ? dataUpdate.product_star_rating : "No Ratings"}</small>
+                <small>⭐${info.product_star_rating ? info.product_star_rating : "No Ratings"}</small>
                 <h4>${info.product_price}</h4>
             </div>
         </section>

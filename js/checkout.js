@@ -6,7 +6,7 @@ let totalPrice = document.querySelector("#totalPrice");
 let subTotal = document.querySelector("#subtotal");
 
 let sessionStorageValues = Object.values(sessionStorage);
-console.log(sessionStorageValues);
+console.log(sessionStorage);
 addEventListener("DOMContentLoaded", async (e) => {
     productAdded.innerHTML = await AddProduct(sessionStorageValues);
     productAdded.querySelectorAll(".cuadro img").forEach(button => {
@@ -17,7 +17,7 @@ addEventListener("DOMContentLoaded", async (e) => {
 
 
 const updateQuantity = (e) => {
-    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    let cart = JSON.parse(sessionStorage.getItem('cart'));
     let button = e.target;
     let productElement = button.closest(".product_detail");
     let spanQuantity = productElement.querySelector("#number2");
@@ -56,6 +56,7 @@ const calculateTotals = () => {
     Object.keys(sessionStorage).forEach((key) => {
         const storedValue = sessionStorage.getItem(key);
         if (storedValue) {
+          console.log(storedValue);
             try {
               const data = JSON.parse(storedValue);
               if (data.status === 'OK' && data.request_id && data.data) {
@@ -81,6 +82,7 @@ const calculateTotals = () => {
                 
 
                 sessionStorage.setItem(key, JSON.stringify(data));
+                console.log(sessionStorage);
               }
             } catch (error) {
               console.error(`Error parsing Session Storage value: ${error}`);

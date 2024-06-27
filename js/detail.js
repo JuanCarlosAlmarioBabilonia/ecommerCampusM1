@@ -16,10 +16,13 @@ addEventListener("DOMContentLoaded", async(e)=>{
     let id = params.get('id');
     if(!localStorage.getItem(id)) localStorage.setItem(id, JSON.stringify(await getProductId({id})));
     let info = JSON.parse(localStorage.getItem(id))
+    console.log(info);
     main__section__gallery.innerHTML = await galleryCategory(info);
     main__section__title.innerHTML = await titleProductDetail(info);
+    console.log(info);
 
     datos.productos = info;
+    console.log(datos);
     
 
     let increase_button = document.querySelector("#increaseButton");
@@ -38,18 +41,20 @@ addEventListener("DOMContentLoaded", async(e)=>{
         let quantity = Number(span_quantity.innerHTML);
 
         // Añade la cantidad seleccionada al objeto productInfo
-        productInfo.productos.data.quantity = quantity;
+        datos.productos.data.quantity = quantity;
+        console.log(datos);
 
-        // Obtiene los productos actuales del carrito
-        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        // // Obtiene los productos actuales del carrito
+        // let ola = JSON.parse(sessionStorage.getItem('cart'));
+        // console.log(cart);
 
-        // Añade o actualiza el producto en el carrito
-        let existingProductIndex = cart.findIndex(product => product.data.id === productInfo.data.id);
-        if (existingProductIndex !== -1) {
-            cart[existingProductIndex].quantity += quantity; // Actualiza el producto existente
-        } else {
-            cart.push(...productInfo, quantity); // Añade el nuevo producto
-        }
+        // // Añade o actualiza el producto en el carrito
+        // let existingProductIndex = cart.findIndex(product => product.data.id === productInfo.data.id);
+        // if (existingProductIndex !== -1) {
+        //     cart[existingProductIndex].quantity += quantity; // Actualiza el producto existente
+        // } else {
+        //     cart.push(...productInfo, quantity); // Añade el nuevo producto
+        // }
 
         // Guarda el carrito actualizado en sessionStorage
         sessionStorage.setItem(id, JSON.stringify(datos.productos));
@@ -86,6 +91,18 @@ addEventListener("DOMContentLoaded", async(e)=>{
         let span_quantity_checkout = document.querySelector("#number2");
         if (e.target.id === 'increaseButton') span_quantity.innerHTML = Number(span_quantity.innerHTML) + 1;
         if (e.target.id === 'decreaseButton' && Number(span_quantity.innerHTML) > 1) span_quantity.innerHTML = Number(span_quantity.innerHTML) - 1;
+    };
+
+    const updateCartDisplay = async () => {
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        // let productHtml = await Promise.all(cart.map(product => productAdded(product)));
+        // product_added.innerHTML = productHtml.join('');
+    
+        // product_added.querySelectorAll(".product__select img").forEach(button => {
+        //     button.addEventListener("click", updateQuantity);
+        // });
+    
+        // calculateTotals();
     };
 
 
